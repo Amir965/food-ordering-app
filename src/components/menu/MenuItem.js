@@ -2,7 +2,7 @@ import {CartContext} from "@/components/AppContext";
 import MenuItemTile from "@/components/menu/MenuItemTile";
 import Image from "next/image";
 import {useContext, useState} from "react";
-import FlyingButton from "react-flying-item";
+// import FlyingButton from "react-flying-item";
 import toast from "react-hot-toast";
 
 const MenuItem=(menuItem)=> {
@@ -28,6 +28,7 @@ const MenuItem=(menuItem)=> {
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log('hiding popup');
     setShowPopup(false);
+    toast.success('Item added to the cart')
   }
   function handleExtraThingClick(ev, extraThing) {
     const checked = ev.target.checked;
@@ -105,7 +106,7 @@ const MenuItem=(menuItem)=> {
                   ))}
                 </div>
               )}
-              <FlyingButton
+              {/* <FlyingButton
                 targetTop={'5%'}
                 targetLeft={'95%'}
                 src={image}>
@@ -113,7 +114,11 @@ const MenuItem=(menuItem)=> {
                      onClick={handleAddToCartButtonClick}>
                   Add to cart ${selectedPrice}
                 </div>
-              </FlyingButton>
+              </FlyingButton> */}
+              <div className="primary bottom-2">
+                <button onClick={handleAddToCartButtonClick}>Add to cart ${selectedPrice}</button>
+              </div>
+              
               <button
                 className="mt-2"
                 onClick={() => setShowPopup(false)}>
