@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import {CartContext, cartProductPrice} from "@/components/AppContext";
 import AddressInputs from "@/components/layout/AddressInputs";

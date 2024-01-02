@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import {SessionProvider} from "next-auth/react";
 import {createContext, useEffect, useState} from "react";

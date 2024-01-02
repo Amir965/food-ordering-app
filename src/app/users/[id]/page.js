@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import { useProfile } from "@/components/UseProfile"
 import UserForm from "@/components/layout/UserForm"
