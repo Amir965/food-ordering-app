@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import AddToCartButton from "@/components/menu/AddToCartButton";
 
 const MenuItemTile = ({ onAddToCart, ...item }) => {
