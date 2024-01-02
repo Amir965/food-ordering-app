@@ -10,12 +10,12 @@ import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 
 export const authOptions={
-  secret: process.env.SECRET,
+  secret: process.env.SECRET_AMIR,
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID_AMIR,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET_AMIR,
     }),
     CredentialsProvider({
       name: "Credentials",
@@ -32,7 +32,7 @@ export const authOptions={
         const email = credentials?.email;
         const password = credentials?.password;
 
-        mongoose.connect(process.env.MONGO_URL)
+        mongoose.connect(process.env.MONGO_URL_AMIR)
         const user = await User.findOne({ email });
         const passwordOk = user && bcrypt.compareSync(password, user.password)
         

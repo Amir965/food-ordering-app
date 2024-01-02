@@ -3,10 +3,10 @@ import MenuItem from "@/models/MenuItems";
 import {Order} from "@/models/Order";
 import mongoose from "mongoose";
 import {getServerSession} from "next-auth";
-const stripe = require('stripe')(process.env.STRIPE_SK);
+const stripe = require('stripe')(process.env.STRIPE_SK_AMIR);
 
 export async function POST(req) {
-  mongoose.connect(process.env.MONGO_URL);
+  mongoose.connect(process.env.MONGO_URL_AMIR);
 
   const {cartProducts, address} = await req.json();
   const session = await getServerSession(authOptions);
@@ -57,8 +57,8 @@ export async function POST(req) {
     line_items: stripeLineItems,
     mode: 'payment',
     customer_email: userEmail,
-    success_url: process.env.NEXTAUTH_URL + 'orders/' + orderDoc._id.toString() + '?clear-cart=1',
-    cancel_url: process.env.NEXTAUTH_URL + 'cart?canceled=1',
+    success_url: process.env.NEXTAUTH_URL_AMIR + 'orders/' + orderDoc._id.toString() + '?clear-cart=1',
+    cancel_url: process.env.NEXTAUTH_URL_AMIR + 'cart?canceled=1',
     metadata: {orderId:orderDoc._id.toString()},
     payment_intent_data: {
       metadata:{orderId:orderDoc._id.toString()},

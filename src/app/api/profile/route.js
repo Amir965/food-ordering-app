@@ -5,7 +5,7 @@ import User from "@/models/User";
 import UserInfo from "@/models/UserInfo"
 
 export async function PUT(req) {
-  mongoose.connect(process.env.MONGO_URL);
+  mongoose.connect(process.env.MONGO_URL_AMIR);
   const data = await req.json();
   const {_id, name, image, ...otherUserInfo} = data;
 
@@ -26,7 +26,7 @@ export async function PUT(req) {
 }
 
 export async function GET(req) {
-  mongoose.connect(process.env.MONGO_URL);
+  mongoose.connect(process.env.MONGO_URL_AMIR);
 
   const url = new URL(req.url);
   const _id = url.searchParams.get('_id');
