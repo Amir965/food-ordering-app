@@ -45,7 +45,7 @@ export const authOptions={
   ],
 }
 
-export async function isAdmin() {
+const isAdmin=async()=> {
   const session = await getServerSession(authOptions);
   const userEmail = session?.user?.email;
   if (!userEmail) {
@@ -57,6 +57,7 @@ export async function isAdmin() {
   }
   return userInfo.admin;
 }
+export default isAdmin;
 
 const handler = NextAuth(authOptions);
 
