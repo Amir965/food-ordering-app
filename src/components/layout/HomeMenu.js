@@ -3,18 +3,32 @@
 import Image from "next/image";
 import MenuItem from "@/components/menu/MenuItem";
 import SectionHeaders from "@/components/layout/SectionHeaders";
+import Loader from "@/components/icons/Loader";
 import { useEffect, useState } from "react";
 
 const HomeMenu = () => {
   const [bestSellers, setBestSellers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  // useEffect(() => {
+  //   fetch("/api/menuItems").then((res) => {
+  //     res.json().then((menuitems) => {
+  //       setBestSellers(menuitems);
+  //       console.log("BestSellers", bestSellers);
+  //     });
+  //   });
+  // }, []);
 
   useEffect(() => {
-    fetch("/api/menuItems").then((res) => {
-      res.json().then((menuitems) => {
+    fetch("/api/menuItems")
+      .then((res) => res.json())
+      .then((menuitems) => {
         setBestSellers(menuitems);
-        console.log("BestSellers", bestSellers);
+        setLoading(false); // Set loading to false when data is fetched
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false); // Handle error and set loading to false
       });
-    });
   }, []);
 
   return (
@@ -33,10 +47,17 @@ const HomeMenu = () => {
           mainHeader={"Our Best Sellers"}
         />
       </div>
-      <div className="grid grid-cols-3 gap-4">
-        {bestSellers?.length > 0 &&
-          bestSellers.map((item) => <MenuItem key={item._id} {...item} />)}
-      </div>
+
+      {loading ? (
+        <div className="flex justify-center mt-10">
+          <Loader />
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {bestSellers?.length > 0 &&
+            bestSellers.map((item) => <MenuItem key={item._id} {...item} />)}
+        </div>
+      )}
     </section>
   );
 };

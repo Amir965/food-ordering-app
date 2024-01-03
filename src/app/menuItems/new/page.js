@@ -7,14 +7,14 @@ import toast from "react-hot-toast";
 import Left from "@/components/icons/Left";
 import { redirect } from "next/navigation";
 import MenuItemForm from "@/components/layout/MenuItemForm";
+import Loader from "@/components/icons/Loader";
 
 const NewMenuItemPage = () => {
-    const [redirectToItems,setRedirectToItems]=useState(false)
-  
+  const [redirectToItems, setRedirectToItems] = useState(false);
+
   const { loading, data } = useProfile();
-  
-    
-  const handleFormSubmit = async (e,data) => {
+
+  const handleFormSubmit = async (e, data) => {
     e.preventDefault();
     const savingPromise = new Promise(async (resolve, reject) => {
       const response = await fetch("/api/menuItems", {
@@ -30,15 +30,19 @@ const NewMenuItemPage = () => {
       success: "Saved!",
       error: "Error!",
     });
-      setRedirectToItems(true)
+    setRedirectToItems(true);
   };
 
-    if (redirectToItems) {
-        return redirect('/menuItems')
-    }
-    
+  if (redirectToItems) {
+    return redirect("/menuItems");
+  }
+
   if (loading) {
-    return "Loading user info...";
+    return (
+      <div className="flex justify-center mt-[20%]">
+        <Loader />
+      </div>
+    );
   }
   if (!data.admin) {
     return "Not an admin.";
@@ -52,7 +56,7 @@ const NewMenuItemPage = () => {
           <span>Show all menu items</span>
         </Link>
       </div>
-     <MenuItemForm menuItem={null} onSubmit={handleFormSubmit}/>
+      <MenuItemForm menuItem={null} onSubmit={handleFormSubmit} />
     </section>
   );
 };

@@ -2,9 +2,9 @@ import { cartProductPrice } from "@/components/AppContext";
 import Trash from "@/components/icons/Trash";
 import Image from "next/image";
 
-const CartProduct = ({ product, onRemove}) => {
-  
-  
+const CartProduct = ({ product, onRemove }) => {
+  console.log("amir", product._id);
+
   return (
     <div className="flex items-center gap-4 border-b py-4">
       <div className="w-24">
@@ -21,16 +21,20 @@ const CartProduct = ({ product, onRemove}) => {
           <div className="text-sm text-gray-500">
             {product.extras.map((extra) => (
               <div key={extra.name}>
-                {extra.name} ${extra.price}
+                {extra.name} ₹{extra.price}
               </div>
             ))}
           </div>
         )}
       </div>
-      <div className="text-lg font-semibold">${cartProductPrice(product)}</div>
+      <div className="text-lg font-semibold">₹{cartProductPrice(product)}</div>
       {!!onRemove && (
         <div className="ml-2">
-          <button type="button" onClick={() => onRemove()} className="p-2">
+          <button
+            type="button"
+            onClick={() => onRemove(product._id)}
+            className="p-2"
+          >
             <Trash />
           </button>
         </div>

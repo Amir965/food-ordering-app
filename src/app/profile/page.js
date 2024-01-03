@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import UserTabs from "@/components/layout/UserTabs";
 import UserForm from "@/components/layout/UserForm";
+import Loader from "@/components/icons/Loader";
 
 const ProfilePage = () => {
   const session = useSession();
@@ -45,7 +46,11 @@ const ProfilePage = () => {
   };
 
   if (status === "loading" || !profileFetched) {
-    return "Loading...";
+    return (
+      <div className="flex justify-center mt-[30%]">
+        <Loader />
+      </div>
+    );
   }
   if (status === "unauthenticated") {
     return redirect("/login");

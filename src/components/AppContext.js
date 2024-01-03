@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 import {SessionProvider} from "next-auth/react";
 import {createContext, useEffect, useState} from "react";
@@ -38,7 +37,7 @@ export function AppProvider({children}) {
   function removeCartProduct(indexToRemove) {
     setCartProducts(prevCartProducts => {
       const newCartProducts = prevCartProducts
-        .filter((v,index) => index !== indexToRemove);
+        .filter((product) => product._id !== indexToRemove);
       saveCartProductsToLocalStorage(newCartProducts);
       return newCartProducts;
     });

@@ -46,24 +46,24 @@ export default function OrderPage() {
         </div>
       </div>
       {loadingOrder && (
-        <div>Loading order...</div>
+        <div className="flex justify-center mt-10">Loading order...</div>
       )}
       {order && (
-        <div className="grid md:grid-cols-2 md:gap-16">
-          <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 md:gap-8">
+          <div className="bg-gray-100 p-4 rounded-lg">
             {order.cartProducts.map(product => (
               <CartProduct key={product._id} product={product} />
             ))}
-            <div className="text-right py-2 text-gray-500">
+            <div className="text-right py-4 px-4 text-gray-500">
               Subtotal:
-              <span className="text-black font-bold inline-block w-8">${subtotal}</span>
+              <span className="text-black font-bold inline-block w-8">₹{subtotal}</span>
               <br />
               Delivery:
-              <span className="text-black font-bold inline-block w-8">$5</span>
+              <span className="text-black font-bold inline-block w-8">₹5</span>
               <br />
               Total:
               <span className="text-black font-bold inline-block w-8">
-                ${subtotal + 5}
+                ₹{subtotal + 5}
               </span>
             </div>
           </div>
